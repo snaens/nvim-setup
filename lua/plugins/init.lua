@@ -16,13 +16,22 @@ return {
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim", "lua", "vimdoc",
+        "html", "css", "jsonc",
+      },
+    },
+  },
+
+  {
+    "esensar/nvim-dev-container",
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    event = "BufEnter",
+    config = function()
+      require("devcontainer").setup{}
+    end,
+  },
 }
